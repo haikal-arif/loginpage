@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Login</title>
+    <link rel='stylesheet' href='../public/style.css'>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <form autocomplete='off' action='' method='post'>
+      <input type='hidden' id='action' value='login'>
+      <label for=''>Username</label>
+      <input class='bg-black' type='text' id='username' value=''> <br>
+      <label for=''>Password</label>
+      <input type='password' id='password' value=''> <br>
+      <button type='button' onclick='submitData();'>Login</button>
+    </form>
+    <br>
+    <a href='register.html'>Go To Register</a>
+    <script src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
+</script>
+<script type='text/javascript'>
+  function submitData(){
+    $(document).ready(function(){
+      const data = {
+        name: $('#name').val(),
+        username: $('#username').val(),
+        password: $('#password').val(),
+        action: $('#action').val(),
+      };
+
+      console.log(data)
+      $.ajax({
+        url: '/userlogin',
+        method: 'GET',
+        data: data,
+        dataType: 'text',
+        success:function(response){
+          alert(response);
+          if(response == 'Login Successful'){
+            window.location.reload();
+          }
+        }
+      });
+    });
+  }
+</script>
+  </body>
+</html>
